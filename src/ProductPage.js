@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import Nav from './Nav';
 
 const products = [
   {
@@ -73,6 +74,7 @@ const sizeLabels = {
 
 const ProductPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const product = products.find((p) =>
     p.variations.some((v) => v.id === id)
   );
@@ -84,6 +86,7 @@ const ProductPage = () => {
   }
 
   const variation = product.variations.find((v) => v.id === id);
+  const otherVariations = product.variations.filter(v => v.id !== id);
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
@@ -93,8 +96,13 @@ const ProductPage = () => {
     console.log(`Added ${product.name} (${variation.name}, Size: ${selectedSize}) to cart`);
   };
 
+  const navigateToProductPage = (variationId) => {
+    navigate(`/products/${variationId}`);
+  };
+
   return (
     <div>
+      <Nav/>
       <h2>{product.name}</h2>
       <p>{variation.name}</p> 
       <p>${product.price}</p>
@@ -103,6 +111,19 @@ const ProductPage = () => {
           <option key={size} value={size}>{sizeLabels[size]}</option>
         ))}
       </select>
+      {product.variations.length > 1 && (
+        <div>
+          <ul>
+            {product.variations.map((otherVariation) => (
+              <li key={otherVariation.id}>
+                <button onClick={() => navigateToProductPage(otherVariation.id)}>
+                  {otherVariation.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <button onClick={handleAddToCart}>add to cart</button>
     </div>
   );
