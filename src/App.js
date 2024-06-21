@@ -1,6 +1,6 @@
-import './App.css';
-import Nav from './Nav';
-import Card from './Card';
+import './styles/App.css';
+import Nav from './components/Nav';
+import Card from './components/Card';
 import products from './data/products';
 
 function App() {

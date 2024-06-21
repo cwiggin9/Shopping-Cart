@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Nav from './Nav';
-import products from './data/products';
+import Nav from '../components/Nav';
+import products from '../data/products';
 
 const sizeLabels = {
   S: 'Small',
