@@ -1,12 +1,13 @@
-import '../styles/HomePage.css';
+import styles from '../styles/HomePage.module.css';
 import Nav from '../components/Nav';
 import Card from '../components/Card';
 import products from '../data/products';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Nav />
+      <div className={styles.cardGrid}>
       {products.map((product) => (
         product.variations.map((variation) => (
           <Card
@@ -14,9 +15,11 @@ function App() {
             productName={product.name}
             variationId={variation.id}
             variationName={variation.color}
+            imagePath={variation.imagePath}
           />
         ))
       ))}
+      </div>
     </div>
   );
 }

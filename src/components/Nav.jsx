@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Nav.module.css";
 
 function Nav({ cartCount }) {
   const [localCartCount, setLocalCartCount] = useState(0);
@@ -14,9 +15,9 @@ function Nav({ cartCount }) {
   const displayCartCount = cartCount === undefined ? localCartCount : cartCount;
 
   return (
-    <div>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/cart"}>Cart {displayCartCount > 0 && <span>({displayCartCount})</span>}</Link>
+    <div className={styles.nav}>
+      <Link to={"/"} className={styles.navLink}>Home</Link>
+      <Link to={"/cart"} className={styles.navLink}>Cart {displayCartCount > 0 && <span>({displayCartCount})</span>}</Link>
     </div>
   );
 }

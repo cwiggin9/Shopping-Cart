@@ -14,16 +14,20 @@ function Cart() {
   return (
     <div>
       <Nav />
-      <ul>
-        {cart.map((item, index) => (
-          <li key={index}>
-          <p>{item.productName}</p>
-          <p>{item.size}</p>
-          <p>{item.color}</p>
-          <p>${item.price}</p>
-        </li>
-        ))}
-      </ul>
+      {cart.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <ul>
+          {cart.map((item, index) => (
+            <li key={index}>
+              <p>{item.productName}</p>
+              <p>{item.size}</p>
+              <p>{item.color}</p>
+              <p>${item.price}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
