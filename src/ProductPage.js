@@ -6,7 +6,7 @@ const products = [
   {
     id: "product-1",
     name: "T-Shirt",
-    price: 19.99,
+    price: 48,
     sizes: ["S", "M", "L", "XL"],
     variations: [
       {
@@ -26,7 +26,7 @@ const products = [
   {
     id: "product-2",
     name: "Jacket",
-    price: 99.99,
+    price: 158,
     sizes: ["M", "L", "XL"],
     variations: [
       {
@@ -46,7 +46,7 @@ const products = [
   {
     id: "product-3",
     name: "Cap",
-    price: 15.99,
+    price: 48,
     sizes: ["One Size"],
     variations: [
       {
@@ -73,6 +73,11 @@ const sizeLabels = {
 };
 
 const ProductPage = () => {
+  const [cartCount, setCartCount] = useState(() => {
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    return existingCart.length;
+  });
+  
   const { id } = useParams();
   const navigate = useNavigate();
   const product = products.find((p) =>
@@ -86,14 +91,21 @@ const ProductPage = () => {
   }
 
   const variation = product.variations.find((v) => v.id === id);
-  const otherVariations = product.variations.filter(v => v.id !== id);
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
   };
 
   const handleAddToCart = () => {
-    console.log(`Added ${product.name} (${variation.name}, Size: ${selectedSize}) to cart`);
+    setCartCount(cartCount + 1);
+
+    const cartItem = {
+      variationId: variation.id,
+      size: selectedSize
+    };
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const updatedCart = [...existingCart, cartItem];
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   const navigateToProductPage = (variationId) => {
@@ -102,15 +114,17 @@ const ProductPage = () => {
 
   return (
     <div>
-      <Nav/>
+      <Nav cartCount={cartCount} />
       <h2>{product.name}</h2>
       <p>{variation.name}</p> 
       <p>${product.price}</p>
+      { product.sizes.length > 1 ?
       <select value={selectedSize} onChange={handleSizeChange}>
         {product.sizes.map((size) => (
           <option key={size} value={size}>{sizeLabels[size]}</option>
         ))}
-      </select>
+      </select> : null
+      }
       {product.variations.length > 1 && (
         <div>
           <ul>

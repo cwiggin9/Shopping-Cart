@@ -6,7 +6,7 @@ const products = [
   {
     id: "product-1",
     name: "T-Shirt",
-    price: 19.99,
+    price: 48,
     sizes: ["S", "M", "L", "XL"],
     variations: [
       {
@@ -26,7 +26,7 @@ const products = [
   {
     id: "product-2",
     name: "Jacket",
-    price: 99.99,
+    price: 158,
     sizes: ["M", "L", "XL"],
     variations: [
       {
@@ -46,7 +46,7 @@ const products = [
   {
     id: "product-3",
     name: "Cap",
-    price: 15.99,
+    price: 48,
     sizes: ["One Size"],
     variations: [
       {

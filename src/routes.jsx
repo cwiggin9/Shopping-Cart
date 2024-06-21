@@ -1,6 +1,7 @@
 import App from "./App";
 import ErrorPage from "./ErrorPage"
 import ProductPage from "./ProductPage";
+import Cart from "./Cart";
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: "/products/:id",
     element: <ProductPage />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
   },
 ];
 
