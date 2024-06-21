@@ -1,23 +1,24 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-function Card({ id, name }) {
+function Card({ productName, variationId, variationName }) {
 
   let navigate = useNavigate(); 
   const routeChange = () => {
-    navigate(`/products/${id}`);
+    navigate(`/products/${variationId}`)
   }
 
   return (
     <div className='Card' onClick={routeChange}>
-      <img src="" alt={name} />
+      <img src="" alt={`${productName} - ${variationName}`} />
     </div>
   );
 }
 
 Card.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
+  productName: PropTypes.string.isRequired,
+  variationId: PropTypes.string.isRequired,
+  variationName: PropTypes.string.isRequired,
 };
 
 export default Card;
