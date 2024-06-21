@@ -1,69 +1,7 @@
-import { React, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Nav from './Nav';
-
-const products = [
-  {
-    id: "product-1",
-    name: "T-Shirt",
-    price: 48,
-    sizes: ["S", "M", "L", "XL"],
-    variations: [
-      {
-        id: "pkvsjmg-mx1-ycon",
-        name: "Red"
-      },
-      {
-        id: "ns8fzjcn-torh5ge",
-        name: "Blue"
-      },
-      {
-        id: "kw_tmgvvbkiymzz8",
-        name: "Green"
-      }
-    ]
-  },
-  {
-    id: "product-2",
-    name: "Jacket",
-    price: 158,
-    sizes: ["M", "L", "XL"],
-    variations: [
-      {
-        id: "lcvhsn0lxzdyw8na",
-        name: "Black"
-      },
-      {
-        id: "t7hfksl9-qwpl3i",
-        name: "Brown"
-      },
-      {
-        id: "mnbvqpwz-45gfk3x",
-        name: "Navy"
-      }
-    ]
-  },
-  {
-    id: "product-3",
-    name: "Cap",
-    price: 48,
-    sizes: ["One Size"],
-    variations: [
-      {
-        id: "xcvnjhqp-92jfkei",
-        name: "Black"
-      },
-      {
-        id: "plqwoe8z-5skd9fj",
-        name: "White"
-      },
-      {
-        id: "zvnxwoqp-38jshdk",
-        name: "Blue"
-      }
-    ]
-  }
-];
+import products from './data/products';
 
 const sizeLabels = {
   S: 'Small',
@@ -77,7 +15,27 @@ const ProductPage = () => {
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
     return existingCart.length;
   });
-  
+
+  const [cartItems, setCartItems] = useState(() => {
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+    return existingCart.reduce((acc, item) => {
+      acc[item.variationId] = item.size;
+      return acc;
+    }, {});
+  });
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(Object.keys(cartItems).map(variationId => ({
+      variationId,
+      size: cartItems[variationId]
+    }))));
+    setCartCount(Object.keys(cartItems).length);
+  }, [cartItems]);
+
+  const handleSizeChange = (event) => {
+    setSelectedSize(event.target.value);
+  };
+
   const { id } = useParams();
   const navigate = useNavigate();
   const product = products.find((p) =>
@@ -92,20 +50,19 @@ const ProductPage = () => {
 
   const variation = product.variations.find((v) => v.id === id);
 
-  const handleSizeChange = (event) => {
-    setSelectedSize(event.target.value);
+  const handleRemoveFromCart = () => {
+    const updatedCartItems = { ...cartItems };
+    delete updatedCartItems[variation.id];
+    setCartItems(updatedCartItems);
   };
 
   const handleAddToCart = () => {
     setCartCount(cartCount + 1);
+  
+    const updatedCartItems = { ...cartItems, [variation.id]: selectedSize };
+    setCartItems(updatedCartItems);
 
-    const cartItem = {
-      variationId: variation.id,
-      size: selectedSize
-    };
-    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
-    const updatedCart = [...existingCart, cartItem];
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    localStorage.setItem('cart', JSON.stringify(updatedCartItems));
   };
 
   const navigateToProductPage = (variationId) => {
@@ -138,7 +95,11 @@ const ProductPage = () => {
           </ul>
         </div>
       )}
-      <button onClick={handleAddToCart}>add to cart</button>
+      {cartItems.hasOwnProperty(variation.id) ? (
+        <button onClick={handleRemoveFromCart}>remove</button>
+      ) : (
+        <button onClick={handleAddToCart}>add to cart</button>
+      )}
     </div>
   );
 };
