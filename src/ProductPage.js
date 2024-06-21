@@ -64,19 +64,26 @@ const products = [
   }
 ];
 
+const sizeLabels = {
+  S: 'Small',
+  M: 'Medium',
+  L: 'Large',
+  XL: 'XLarge'
+};
+
 const ProductPage = () => {
   const { id } = useParams();
   const product = products.find((p) =>
     p.variations.some((v) => v.id === id)
   );
 
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+
   if (!product) {
     return <div>Product not found</div>;
   }
 
   const variation = product.variations.find((v) => v.id === id);
-
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
@@ -89,17 +96,14 @@ const ProductPage = () => {
   return (
     <div>
       <h2>{product.name}</h2>
-      <p>Price: ${product.price}</p>
-      <p>
-        Sizes:
-        <select value={selectedSize} onChange={handleSizeChange}>
-          {product.sizes.map((size) => (
-            <option key={size} value={size}>{size}</option>
-          ))}
-        </select>
-      </p>
-      <p>Color: {variation.name}</p>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <p>{variation.name}</p> 
+      <p>${product.price}</p>
+      <select value={selectedSize} onChange={handleSizeChange}>
+        {product.sizes.map((size) => (
+          <option key={size} value={size}>{sizeLabels[size]}</option>
+        ))}
+      </select>
+      <button onClick={handleAddToCart}>add to cart</button>
     </div>
   );
 };
