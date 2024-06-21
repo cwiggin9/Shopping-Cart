@@ -19,7 +19,7 @@ const ProductPage = () => {
   const [cartItems, setCartItems] = useState(() => {
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
     return existingCart.reduce((acc, item) => {
-      acc[item.variationId] = item.size;
+      acc[item.variationId] = { productName: item.productName, price: item.price, size: item.size, color: item.color };
       return acc;
     }, {});
   });
@@ -27,7 +27,10 @@ const ProductPage = () => {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(Object.keys(cartItems).map(variationId => ({
       variationId,
-      size: cartItems[variationId]
+      productName: cartItems[variationId].productName,
+      price: cartItems[variationId].price,
+      size: cartItems[variationId].size,
+      color: cartItems[variationId].color,
     }))));
     setCartCount(Object.keys(cartItems).length);
   }, [cartItems]);
@@ -57,12 +60,18 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = () => {
-    setCartCount(cartCount + 1);
-  
-    const updatedCartItems = { ...cartItems, [variation.id]: selectedSize };
+    const updatedCartItems = {
+      ...cartItems,
+      [variation.id]: { productName: product.name, price: product.price, size: selectedSize, color: variation.color },
+    };
     setCartItems(updatedCartItems);
 
-    localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+    localStorage.setItem('cart', JSON.stringify(Object.keys(updatedCartItems).map(variationId => ({
+      variationId,
+      size: updatedCartItems[variationId].size,
+      color: updatedCartItems[variationId].color,
+      price: updatedCartItems[variationId].price,
+    }))));
   };
 
   const navigateToProductPage = (variationId) => {
@@ -75,7 +84,7 @@ const ProductPage = () => {
       <h2>{product.name}</h2>
       <p>{variation.name}</p> 
       <p>${product.price}</p>
-      { product.sizes.length > 1 ?
+      { !cartItems.hasOwnProperty(variation.id) && product.sizes.length > 1 ?
       <select value={selectedSize} onChange={handleSizeChange}>
         {product.sizes.map((size) => (
           <option key={size} value={size}>{sizeLabels[size]}</option>
@@ -88,7 +97,7 @@ const ProductPage = () => {
             {product.variations.map((otherVariation) => (
               <li key={otherVariation.id}>
                 <button onClick={() => navigateToProductPage(otherVariation.id)}>
-                  {otherVariation.name}
+                  {otherVariation.color}
                 </button>
               </li>
             ))}

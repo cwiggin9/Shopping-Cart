@@ -13,7 +13,7 @@ function App() {
             key={variation.id}
             productName={product.name}
             variationId={variation.id}
-            variationName={variation.name}
+            variationName={variation.color}
           />
         ))
       ))}

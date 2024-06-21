@@ -7,15 +7,15 @@ const products = [
     variations: [
       {
         id: "pkvsjmg-mx1-ycon",
-        name: "Red"
+        color: "Red"
       },
       {
         id: "ns8fzjcn-torh5ge",
-        name: "Blue"
+        color: "Blue"
       },
       {
         id: "kw_tmgvvbkiymzz8",
-        name: "Green"
+        color: "Green"
       }
     ]
   },
@@ -27,15 +27,15 @@ const products = [
     variations: [
       {
         id: "lcvhsn0lxzdyw8na",
-        name: "Black"
+        color: "Black"
       },
       {
         id: "t7hfksl9-qwpl3i",
-        name: "Brown"
+        color: "Brown"
       },
       {
         id: "mnbvqpwz-45gfk3x",
-        name: "Navy"
+        color: "Navy"
       }
     ]
   },
@@ -47,15 +47,15 @@ const products = [
     variations: [
       {
         id: "xcvnjhqp-92jfkei",
-        name: "Black"
+        color: "Black"
       },
       {
         id: "plqwoe8z-5skd9fj",
-        name: "White"
+        color: "White"
       },
       {
         id: "zvnxwoqp-38jshdk",
-        name: "Blue"
+        color: "Blue"
       }
     ]
   }
