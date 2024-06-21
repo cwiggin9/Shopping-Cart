@@ -12,7 +12,7 @@ function App() {
         product.variations.map((variation) => (
           <Card
             key={variation.id}
-            productName={product.name}
+            productCategory={product.category}
             variationId={variation.id}
             variationName={variation.color}
             imagePath={variation.imagePath}
