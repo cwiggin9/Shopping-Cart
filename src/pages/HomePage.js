@@ -1,7 +1,7 @@
-import './styles/App.css';
-import Nav from './components/Nav';
-import Card from './components/Card';
-import products from './data/products';
+import '../styles/HomePage.css';
+import Nav from '../components/Nav';
+import Card from '../components/Card';
+import products from '../data/products';
 
 function App() {
   return (
