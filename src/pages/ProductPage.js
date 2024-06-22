@@ -82,6 +82,7 @@ const ProductPage = () => {
     <div>
       <Nav cartCount={cartCount} />
       <h2>{product.name}</h2>
+      <p>{variation.color}</p>
       <p>{variation.name}</p> 
       <p>${product.price}</p>
       { !cartItems.hasOwnProperty(variation.id) && product.sizes.length > 1 ?
