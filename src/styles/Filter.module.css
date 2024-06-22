@@ -1,20 +1,19 @@
 .filter {
-    margin-left: 60px;
-  }
-  
-  .filter ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .filter li {
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  .filter li:hover {
-    color: #007BFF;
-  }
-  
+  margin-left: 60px;
+}
+
+.filter ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter li {
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.filter li:hover {
+  color: #007bff;
+}

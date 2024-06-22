@@ -7,7 +7,7 @@ function Nav({ cartCount }) {
 
   useEffect(() => {
     if (cartCount === undefined) {
-      const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
       setLocalCartCount(cartItems.length);
     }
   }, [cartCount]);
@@ -16,8 +16,12 @@ function Nav({ cartCount }) {
 
   return (
     <div className={styles.nav}>
-      <Link to={"/"} className={styles.navLink}>Home</Link>
-      <Link to={"/cart"} className={styles.navLink}>Cart {displayCartCount > 0 && <span>({displayCartCount})</span>}</Link>
+      <Link to={"/"} className={styles.navLink}>
+        Home
+      </Link>
+      <Link to={"/cart"} className={styles.navLink}>
+        Cart {displayCartCount > 0 && <span>({displayCartCount})</span>}
+      </Link>
     </div>
   );
 }

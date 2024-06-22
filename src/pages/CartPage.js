@@ -5,7 +5,7 @@ function Cart() {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const cartData = localStorage.getItem('cart');
+    const cartData = localStorage.getItem("cart");
     if (cartData) {
       setCart(JSON.parse(cartData));
     }
@@ -29,7 +29,7 @@ function Cart() {
         </ul>
       )}
     </div>
-  )
+  );
 }
 
 export default Cart;

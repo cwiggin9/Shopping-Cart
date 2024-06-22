@@ -1,16 +1,19 @@
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
-import styles from '../styles/Card.module.css'
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import styles from "../styles/Card.module.css";
 
 function Card({ productCategory, variationId, variationName, imagePath }) {
-  let navigate = useNavigate(); 
+  let navigate = useNavigate();
   const routeChange = () => {
-    navigate(`/products/${variationId}`)
-  }
+    navigate(`/products/${variationId}`);
+  };
 
   return (
     <div className={styles.Card} onClick={routeChange}>
-      <img src={`images/${imagePath}`} alt={`${productCategory} - ${variationName}`} />
+      <img
+        src={`images/${imagePath}`}
+        alt={`${productCategory} - ${variationName}`}
+      />
     </div>
   );
 }
