@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Nav.module.css";
+import styles from "../styles/Nav.module.css";
 
 function Nav({ cartCount }) {
   const [localCartCount, setLocalCartCount] = useState(0);

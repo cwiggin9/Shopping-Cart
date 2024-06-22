@@ -2,12 +2,29 @@
   min-width: 0;
   min-height: 0;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .Card img {
   max-height: 200px;
   max-width: 100%;
   height: auto;
+}
+
+.Card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  transition: background-color 0.3s ease;
+}
+
+.Card:hover::before {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 600px) {

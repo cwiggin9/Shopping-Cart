@@ -9,11 +9,12 @@ function Card({ productCategory, variationId, variationName, imagePath }) {
   };
 
   return (
-    <div className={styles.Card} onClick={routeChange}>
+    <div className={`${styles.Card}`} onClick={routeChange}>
       <img
         src={`images/${imagePath}`}
         alt={`${productCategory} - ${variationName}`}
       />
+      <div className={styles.overlay}></div> {/* Add overlay */}
     </div>
   );
 }
