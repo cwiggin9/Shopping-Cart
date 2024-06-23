@@ -101,18 +101,19 @@ const ProductPage = () => {
     <div>
       <Nav cartCount={cartCount} />
       <div className={styles.productDetails}>
-        <h2>{product.name}</h2>
-        <p>{variation.color}</p>
+        <div className={styles.productName}>{product.name}</div>
+        <div className={styles.productColor}>{variation.color}</div>
         {product.variations.length > 1 && (
           <div>
-            <ul>
+            <ul className={styles.imageList}>
               {product.variations.map((otherVariation) => (
                 <li key={otherVariation.id}>
-                  <button
+                  <img
+                    src={`../images/${otherVariation.imagePath}`}
+                    alt={otherVariation.color}
                     onClick={() => navigateToProductPage(otherVariation.id)}
-                  >
-                    {otherVariation.color}
-                  </button>
+                    className={styles.smallImage}
+                  />
                 </li>
               ))}
             </ul>

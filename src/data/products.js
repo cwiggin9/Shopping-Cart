@@ -14,12 +14,12 @@ const products = [
       {
         id: "ns8fzjcn-torh5ge",
         color: "White",
-        imagePath: "T33_SS24_BlackCatTee_Royal02_720x.webp",
+        imagePath: "T33_SS24_BlackCatTee_White02_720x.webp",
       },
       {
         id: "kw_tmgvvbkiymzz8",
         color: "Royal",
-        imagePath: "T33_SS24_BlackCatTee_White02_720x.webp",
+        imagePath: "T33_SS24_BlackCatTee_Royal02_720x.webp",
       },
     ],
   },
