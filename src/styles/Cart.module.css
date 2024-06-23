@@ -1,19 +1,23 @@
-.filter {
-  text-align: right;
+.cartContainer {
+  padding: 20px;
 }
 
-.filter ul {
+.cartContainer p {
+  margin: 0;
+}
+
+.cartContainer ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.filter li {
+.cartContainer li {
   font-size: 16px;
   cursor: pointer;
   transition: color 0.3s;
 }
 
-.filter li:hover {
+.cartContainer li:hover {
   color: #007bff;
 }
