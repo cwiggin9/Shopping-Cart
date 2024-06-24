@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
 import products from "../data/products";
 import styles from "../styles/ProductPage.module.css";
+import Filter from "../components/Filter";
 
 const sizeLabels = {
   S: "Small",
@@ -100,57 +101,69 @@ const ProductPage = () => {
   return (
     <div>
       <Nav cartCount={cartCount} />
-      <div className={styles.productDetails}>
-        <div className={styles.productName}>{product.name}</div>
-        <div className={styles.productColor}>{variation.color}</div>
-        {product.variations.length > 1 && (
-          <div>
-            <ul className={styles.imageList}>
-              {product.variations.map((otherVariation) => (
-                <li key={otherVariation.id}>
-                  <img
-                    src={`../images/${otherVariation.imagePath}`}
-                    alt={otherVariation.color}
-                    onClick={() => navigateToProductPage(otherVariation.id)}
-                    className={styles.smallImage}
-                  />
-                </li>
-              ))}
-            </ul>
+      <div className={styles.mainContainer}>
+        <Filter />
+        <div className={styles.productPageContainer}>
+          <div className={styles.imageContainer}>
+            <img
+              src={`../images/${variation.imagePath}`}
+              alt=""
+              className={styles.productImage}
+            />
           </div>
-        )}
-        <p>${product.price}</p>
-        <div className={styles.imageContainer}>
-          <img
-            src={`../images/${variation.imagePath}`}
-            alt=""
-            className={styles.productImage}
-          />
-        </div>
-        <div className={styles.controlsContainer}>
-          {!cartItems.hasOwnProperty(variation.id) &&
-          product.sizes.length > 1 ? (
-            <select
-              value={selectedSize}
-              onChange={handleSizeChange}
-              className={styles.select}
-            >
-              {product.sizes.map((size) => (
-                <option key={size} value={size}>
-                  {sizeLabels[size]}
-                </option>
-              ))}
-            </select>
-          ) : null}
-          {cartItems.hasOwnProperty(variation.id) ? (
-            <button onClick={handleRemoveFromCart} className={styles.button}>
-              remove
-            </button>
-          ) : (
-            <button onClick={handleAddToCart} className={styles.button}>
-              add to cart
-            </button>
-          )}
+          <div className={styles.productDetailsContainer}>
+            <div className={styles.productDetails}>
+              <div className={styles.productName}>{product.name}</div>
+              <div className={styles.productColor}>{variation.color}</div>
+              {product.variations.length > 1 && (
+                <div>
+                  <ul className={styles.imageList}>
+                    {product.variations.map((otherVariation) => (
+                      <li key={otherVariation.id}>
+                        <img
+                          src={`../images/${otherVariation.imagePath}`}
+                          alt={otherVariation.color}
+                          onClick={() =>
+                            navigateToProductPage(otherVariation.id)
+                          }
+                          className={styles.smallImage}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <p>${product.price}</p>
+              <div className={styles.controlsContainer}>
+                {!cartItems.hasOwnProperty(variation.id) &&
+                product.sizes.length > 1 ? (
+                  <select
+                    value={selectedSize}
+                    onChange={handleSizeChange}
+                    className={styles.select}
+                  >
+                    {product.sizes.map((size) => (
+                      <option key={size} value={size}>
+                        {sizeLabels[size]}
+                      </option>
+                    ))}
+                  </select>
+                ) : null}
+                {cartItems.hasOwnProperty(variation.id) ? (
+                  <button
+                    onClick={handleRemoveFromCart}
+                    className={styles.button}
+                  >
+                    remove
+                  </button>
+                ) : (
+                  <button onClick={handleAddToCart} className={styles.button}>
+                    add to cart
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
