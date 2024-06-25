@@ -10,6 +10,10 @@ const routes = [
     errorElement: <ErrorPage />,
   },
   {
+    path: "/collections/:category",
+    element: <App />,
+  },
+  {
     path: "/products/:id",
     element: <ProductPage />,
   },

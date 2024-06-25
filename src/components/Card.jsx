@@ -2,25 +2,27 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Card.module.css";
 
-function Card({ productCategory, variationId, variationName, imagePath }) {
+function Card({ productName, variationId, variationName, imagePath }) {
   let navigate = useNavigate();
   const routeChange = () => {
     navigate(`/products/${variationId}`);
   };
 
+  console.log(imagePath);
+
   return (
     <div className={`${styles.Card}`} onClick={routeChange}>
       <img
-        src={`images/${imagePath}`}
-        alt={`${productCategory} - ${variationName}`}
+        src={`../images/${imagePath}`}
+        alt={`${productName} - ${variationName}`}
       />
-      <div className={styles.overlay}></div> {/* Add overlay */}
+      <div className={styles.overlay}></div>
     </div>
   );
 }
 
 Card.propTypes = {
-  productCategory: PropTypes.string,
+  productName: PropTypes.string,
   variationId: PropTypes.string.isRequired,
   variationName: PropTypes.string,
   imagePath: PropTypes.string,

@@ -102,7 +102,7 @@ const ProductPage = () => {
     <div>
       <Nav cartCount={cartCount} />
       <div className={styles.mainContainer}>
-        <Filter />
+        <Filter isProductPage={true} />
         <div className={styles.productPageContainer}>
           <div className={styles.imageContainer}>
             <img
