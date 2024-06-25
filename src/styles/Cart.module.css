@@ -1,9 +1,43 @@
-.cartContainer {
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex: 1;
   padding: 20px;
+}
+
+.cartContainer {
+  flex: 1;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+}
+
+.itemContainer {
+  display: flex;
+  align-items: center;
+}
+
+.imageContainer {
+  margin-right: 10px;
+}
+
+.productInfo {
+  flex-grow: 1;
 }
 
 .cartContainer p {
   margin: 0;
+  text-align: center;
 }
 
 .cartContainer ul {
@@ -14,10 +48,4 @@
 
 .cartContainer li {
   font-size: 16px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.cartContainer li:hover {
-  color: #007bff;
 }

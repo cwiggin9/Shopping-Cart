@@ -8,14 +8,9 @@ function Card({ productName, variationId, variationName, imagePath }) {
     navigate(`/products/${variationId}`);
   };
 
-  console.log(imagePath);
-
   return (
     <div className={`${styles.Card}`} onClick={routeChange}>
-      <img
-        src={`../images/${imagePath}`}
-        alt={`${productName} - ${variationName}`}
-      />
+      <img src={`${imagePath}`} alt={`${productName} - ${variationName}`} />
       <div className={styles.overlay}></div>
     </div>
   );

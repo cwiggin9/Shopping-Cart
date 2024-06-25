@@ -5,13 +5,6 @@ import products from "../data/products";
 import styles from "../styles/ProductPage.module.css";
 import Filter from "../components/Filter";
 
-const sizeLabels = {
-  S: "Small",
-  M: "Medium",
-  L: "Large",
-  XL: "XLarge",
-};
-
 const ProductPage = () => {
   const [cartCount, setCartCount] = useState(() => {
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -26,6 +19,7 @@ const ProductPage = () => {
         price: item.price,
         size: item.size,
         color: item.color,
+        imagePath: item.imagePath,
       };
       return acc;
     }, {});
@@ -41,6 +35,7 @@ const ProductPage = () => {
           price: cartItems[variationId].price,
           size: cartItems[variationId].size,
           color: cartItems[variationId].color,
+          imagePath: cartItems[variationId].imagePath,
         })),
       ),
     );
@@ -77,6 +72,7 @@ const ProductPage = () => {
         price: product.price,
         size: selectedSize,
         color: variation.color,
+        imagePath: variation.imagePath,
       },
     };
     setCartItems(updatedCartItems);
@@ -89,6 +85,7 @@ const ProductPage = () => {
           size: updatedCartItems[variationId].size,
           color: updatedCartItems[variationId].color,
           price: updatedCartItems[variationId].price,
+          imagePath: updatedCartItems[variationId].imagePath,
         })),
       ),
     );
@@ -102,7 +99,7 @@ const ProductPage = () => {
     <div>
       <Nav cartCount={cartCount} />
       <div className={styles.mainContainer}>
-        <Filter isProductPage={true} />
+        <Filter />
         <div className={styles.productPageContainer}>
           <div className={styles.imageContainer}>
             <img
@@ -144,7 +141,7 @@ const ProductPage = () => {
                   >
                     {product.sizes.map((size) => (
                       <option key={size} value={size}>
-                        {sizeLabels[size]}
+                        {size}
                       </option>
                     ))}
                   </select>
