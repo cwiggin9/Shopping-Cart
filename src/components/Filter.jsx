@@ -12,7 +12,7 @@ function Filter() {
   };
 
   return (
-    <div className={styles.filter}>
+    <div className={`${styles.filter} filter`}>
       <ul>
         <li onClick={() => handleFilterChange("All")}>All</li>
         <li onClick={() => handleFilterChange("T-Shirts")}>T-Shirts</li>

@@ -28,11 +28,10 @@ function Cart() {
 
   return (
     <div className="container">
-      <Nav cartCount={cartCount} className="nav" />
-      <Filter className="filter" />
+      <Nav cartCount={cartCount} />
+      <Filter />
       <div className="content">
-        test
-        {/* <div className={styles.cartContainer}>
+        <div className={styles.cartContainer}>
           {cart.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
@@ -65,7 +64,7 @@ function Cart() {
               ))}
             </ul>
           )}
-        </div> */}
+        </div>
       </div>
     </div>
   );

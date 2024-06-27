@@ -25,10 +25,10 @@ function App() {
   );
 
   return (
-    <div>
+    <div className="container">
       <Nav />
-      <div className={styles.mainContent}>
-        <Filter />
+      <Filter />
+      <div className="content">
         <div className={styles.cardGrid}>
           {filteredProducts.map((product) =>
             product.variations.map((variation) => (

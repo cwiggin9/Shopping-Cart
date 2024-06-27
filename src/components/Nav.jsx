@@ -15,7 +15,7 @@ function Nav({ cartCount }) {
   const displayCartCount = cartCount === undefined ? localCartCount : cartCount;
 
   return (
-    <div className={styles.nav}>
+    <div className={`${styles.nav} nav`}>
       <Link to={"/"} className={styles.navLink}>
         Home
       </Link>

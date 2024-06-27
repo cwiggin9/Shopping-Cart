@@ -96,10 +96,10 @@ const ProductPage = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <Nav cartCount={cartCount} />
-      <div className={styles.mainContainer}>
-        <Filter />
+      <Filter />
+      <div className={`${styles.mainContainer} content`}>
         <div className={styles.productPageContainer}>
           <div className={styles.imageContainer}>
             <img
