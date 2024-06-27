@@ -27,11 +27,12 @@ function Cart() {
   };
 
   return (
-    <div className={styles.container}>
-      <Nav cartCount={cartCount}/>
-      <div className={styles.content}>
-        <Filter />
-        <div className={styles.cartContainer}>
+    <div className="container">
+      <Nav cartCount={cartCount} className="nav" />
+      <Filter className="filter" />
+      <div className="content">
+        test
+        {/* <div className={styles.cartContainer}>
           {cart.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
@@ -53,7 +54,10 @@ function Cart() {
                       <p>{item.size}</p>
                       <p>${item.price.toFixed(2)}</p>
                     </div>
-                    <button onClick={() => removeFromCart(index)}>
+                    <button
+                      onClick={() => removeFromCart(index)}
+                      className={styles.removeCartBtn}
+                    >
                       Remove
                     </button>
                   </div>
@@ -61,7 +65,7 @@ function Cart() {
               ))}
             </ul>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
